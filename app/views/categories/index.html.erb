@@ -1,0 +1,40 @@
+<div class="block">
+  <div class="secondary-navigation">
+    <ul>
+      <li class="first active"><%= link_to 'Список', categories_path %></li>
+      <li><%= link_to 'Додати нову', new_category_path %></li>
+    </ul>
+    <div class="clear"></div>
+  </div>          
+  <div class="content">          
+    <h2 class="title">Всі категорії</h2>
+    <div class="inner">
+      <table class="table">
+        <tr>
+          <th>Назва</th>
+          <th>Колір</th>
+          <th class="last">&nbsp;</th>
+        </tr>
+		<% @categories.each do |category| -%>
+		<tr class="<%= cycle("odd", "even") %>">
+			<td>
+				<%= link_to h(category.title), edit_category_path(category) %>
+			</td>
+			<td>
+				<span style="padding: 5px; background-color: #<%= h category.color %>;"><%= h category.color %></span>
+			</td>
+			<td class="last">
+				<%= link_to image_tag('/images/edit_btn.gif', :alt => 'Редагувати', :title => 'Редагувати'), edit_category_path(category) %> |
+				<%= link_to image_tag('/images/delete_btn.gif', :alt => 'Видалити', :title => 'Видалити'), category_path(category), :method => :delete, :confirm => 'Ви впевнені?' %>
+			</td>
+		</tr>
+		<% end -%>
+      </table>
+      <div class="actions-bar">
+        <div class="actions">
+        </div>
+        <div class="clear"></div>
+      </div>
+    </div>
+  </div>
+</div>

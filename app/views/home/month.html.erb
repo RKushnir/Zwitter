@@ -1,0 +1,11 @@
+<div class="block" id="block-text">  
+  <div class="content">
+    <h2 class="title"><%=link_to_prev_month '←', @current_date%> <%=month_navigation(@current_date)%> <%=link_to_next_month '→', @current_date%></h2>
+    <div class="inner">
+      <div width="100%">
+        <%= javascript_include_tag 'swfobject' %>
+		<%= @graph %>
+      </div>
+    </div>
+  </div>
+</div>

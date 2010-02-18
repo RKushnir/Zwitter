@@ -1,0 +1,56 @@
+<div class="block" id="block-text">  
+  <div class="content">
+    <h2 class="title"><%=link_to_prev_day '←', @current_date%> <%=day_navigation(@current_date)%> <%=link_to_next_day '→', @current_date%></h2>
+    <div class="inner">
+	  <%unless @categories.empty?%>
+		<%if @current_date == Date.today%>
+		  <div width="100%">
+			<% @categories.each do |category| %>
+			  <div id="record_add_form_<%=category.id%>" class="category" style="background-color: #<%=h category.color%>">
+				<%=render :partial=> "record_add_form", :locals => {:category => category} %>
+			  </div>
+			<%end%>
+			<span><i>*час можна вводити у таких форматах:</i> хвилини, години: , години:хвилини</span>
+		  </div>
+		<%end%>
+		<%unless @activities.empty? && @current_date != Date.today%>
+		  <table class="activity-table">
+			<thead>
+			  <tr>
+				<th class="first">
+				  Категорія
+				</th>
+				<th width="100px">
+				  Час
+				</th>
+				<th width="100px">
+				  Тривалість
+				</th>
+				<th>
+				  Коментар
+				</th>
+				<th class="last">
+				</th>
+			  </tr>
+			</thead>
+			<tbody id="activities">
+			  <% @activities.each do |activity| %>
+				<%=render :partial => "record_show", :locals => {:activity => activity}%>
+			  <%end%>
+			  <tr>
+				<td class="first" colspan="5">
+				  &nbsp;
+				</td>
+			  </tr>
+			</tbody>
+		  </table>
+		<%else%>
+		  У цей день Ви нічого не робили.
+		<%end%>
+	  <%else%>
+		Для початку роботи потрібно <%=link_to 'додати категорії', new_category_path%>.
+	  <%end%>
+    </div>
+  </div>
+</div>
+

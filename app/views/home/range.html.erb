@@ -1,0 +1,42 @@
+<div class="block" id="block-text">
+  <div class="content">
+    <h2 class="title">Статистика</h2>
+    <div class="inner">
+      <div width="100%">
+        <div id="widget">
+          <span>Виберіть день або період:</span>
+          <div id="widgetCalendar">
+          </div>
+          <a href="#" id="goToRange" style="font-size: 16px;">Показати →</a>
+        </div>
+        <%= javascript_include_tag 'datepicker' %>
+        <% javascript_tag do -%>
+                var datePicker = $('#widgetCalendar').DatePicker({
+                    flat: true,
+                    current: '<%=@current_date%>',
+                    date: '<%=@current_date%>',
+                    calendars: 3,
+                    mode: 'range',
+                    starts: 1,
+					locale: {
+						days: ["Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П'ятниця", "Субота", "Неділя"],
+						daysShort: ["Нед", "Пон", "Вів", "Сер", "Чет", "Пят", "Суб", "Нед"],
+						daysMin: ["Нд", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Нд"],
+						months: ["Січень", "Лютий", "Березень", "Квітень", "Травень", "Червень", "Липень", "Серпень", "Вересень", "Жовтень", "Листопад", "Грудень"],
+						monthsShort: ["Січ", "Лют", "Бер", "Кві", "Тра", "Чер", "Лип", "Сер", "Вер", "Жов", "Лис", "Гру"],
+						weekMin: 'тж'
+					}
+                });
+                $("#goToRange").click(function() {
+                  var dates = datePicker.DatePickerGetDate(true);
+                  document.location = '/from/' + dates[0].split('-').join('/') + '/to/' + dates[1].split('-').join('/');
+                });
+        <%end -%>
+        <div id="chart-frame">
+          <%= javascript_include_tag 'swfobject' %>
+          <%= @graph %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

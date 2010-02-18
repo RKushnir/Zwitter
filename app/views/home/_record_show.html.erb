@@ -1,0 +1,17 @@
+<tr id="record_show_<%=activity.id%>" class="activity" style="background-color: #<%=h activity.category.color%>">
+  <td class="first">
+   <%=h activity.category.title%>
+  </td>
+  <td>
+   <%=activity.created_at.strftime("%H:%M")%>
+  </td>
+  <td>
+   <%=separate_hours(activity.duration)%>
+  </td>
+  <td>
+    <%=h activity.comment%>
+  </td>
+  <td class="last">
+    <%=link_to_remote image_tag("record_delete.png", :alt => 'Видалити запис', :title => 'Видалити запис'), :url => record_path(:id => activity.id), :method => :delete %>
+  </td>
+</tr>

@@ -1,0 +1,13 @@
+<div class="block">
+  <h3><a href="#">Календар</a></h3>
+  <div id="calendar_container">
+  <%=render :partial => "home/calendar", :locals => {:date => date}%>
+  </div>
+</div>
+<div class="block">
+  <h3><a href="#">Статистика</a></h3>
+  <ul class="navigation">
+    <li><%= link_to "За цей місяць", month_path(Date.today.year, Date.today.month) %></li>
+    <li><%= link_to "За цей рік", year_path(Date.today.year) %></li>
+  </ul>
+</div>

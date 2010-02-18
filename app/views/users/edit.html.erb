@@ -1,0 +1,16 @@
+<div class="block">
+  <div class="content">
+    <h2 class="title">Змінити налаштування</h2>
+    <div class="inner">
+      <%form_for :user, :url => {:action => "update"}, :html => { :class => :form } do |f|%>
+        <div class="group">
+          <%= f.label :time_zone, "Часовий пояс:", :class => :label %>
+          <%= f.time_zone_select :time_zone%>
+        </div>
+        <div class="group navform">
+          <input type="submit" class="button" value="Зберегти &rarr;" /> або <%= link_to 'Скасувати', home_path %>
+        </div>
+      <%end%>
+    </div>
+  </div>
+</div>

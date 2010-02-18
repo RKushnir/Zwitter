@@ -1,0 +1,4 @@
+<%= calendar(:year => date.year, :month => date.month, :first_day_of_week => 1, :show_today => true,
+  :previous_month_text => link_to_prev_calendar('<', date), :next_month_text => link_to_next_calendar('>', date)) do |d|
+  [link_to d.mday, day_path(d.year, d.month, d.mday)]
+end%>

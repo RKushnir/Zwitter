@@ -1,0 +1,48 @@
+<h1><%= link_to 'Zвіттер', root_path%></h1>
+<div class="block" id="block-login">
+  <h2>Вхід</h2>
+  <div class="content login">
+    <div class="flash">
+      <% flash.each do |type, message| -%>
+      <div class="message <%= type %>">
+        <p><%=  message %></p>
+      </div>
+      <% end -%>
+    </div>
+    <% form_tag({:action => :create}, :class => 'form login') do -%>
+      <div class="group">
+        <div class="left">
+          <label class="label right">Логін</label>
+        </div>
+        <div class="right">
+          <%= text_field_tag :login, @login, :class => 'text_field' %>
+        </div>              
+        <div class="clear"></div>
+      </div>
+      <div class="group">
+        <div class="left">
+          <label class="label right">Пароль</label>
+        </div>
+        <div class="right">
+          <%= password_field_tag :password, nil, :class => 'text_field' %>
+        </div>              
+        <div class="clear"></div>
+      </div>
+      <div class="group">
+        <div class="left">
+          <label class="label right">Запам'ятати мене</label>
+        </div>
+        <div class="right">
+          <%= check_box_tag :remember_me %>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <div class="group navform">
+        <div class="right">
+          <input type="submit" class="button" value="Увійти" /> або <%=link_to "зареєструватись", signup_path%>
+        </div>
+        <div class="clear"></div>
+      </div>            
+    <% end -%>
+  </div>
+</div>

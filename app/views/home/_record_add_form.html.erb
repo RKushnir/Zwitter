@@ -1,0 +1,11 @@
+<%form_remote_for [category, Record.new] do |f| %>
+  <span class="category-title"><%=link_to h(category.title), edit_category_path(category), :title => 'Редагувати категорію'%></span>
+  <span style="float: right; margin-left: auto; margin-right: 0;">
+    <%unless @record == nil || @record.errors.empty?%>
+    <span class="compact_error">Введіть будь ласка час</span>
+    <%end%>
+    <%=f.text_field :duration, :class => "time_field", :title => "Тривалість"%>
+    <%=f.text_field :comment, :class => "comment_field", :title => "Коментар"%>
+    <%=submit_tag "+"%>
+  </span>
+<%end%>
